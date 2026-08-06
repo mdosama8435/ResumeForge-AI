@@ -1,12 +1,12 @@
 from typing import List, Dict, Any
 import hashlib
 from langchain_core.documents import Document
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from .metadata import ChunkMetadata
 from config.settings import settings
 
 class IntelligentChunker:
     def __init__(self):
+        from langchain_text_splitters import RecursiveCharacterTextSplitter
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=settings.CHUNK_SIZE,
             chunk_overlap=settings.CHUNK_OVERLAP,

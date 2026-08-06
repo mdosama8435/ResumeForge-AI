@@ -1,6 +1,5 @@
 import os
 from typing import List, Dict, Any, Optional
-from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from .embedding_service import EmbeddingService
 from exceptions.rag_exception import RAGException
@@ -9,10 +8,14 @@ from config.settings import settings
 
 class FAISSVectorStore:
     def __init__(self, index_name: str = "default_index"):
+        # LAZY IMPORT FAISS
+        from langchain_community.vectorstores import FAISS
+        self.FAISS = FAISS
+        
         self.index_name = index_name
         self.index_path = os.path.join(settings.VECTOR_STORE_DIR, index_name)
         self.embeddings = EmbeddingService.load_model()
-        self.vector_store: Optional[FAISS] = None
+        self.vector_store = None
         os.makedirs(settings.VECTOR_STORE_DIR, exist_ok=True)
         self.load_index()
 
@@ -20,7 +23,7 @@ class FAISSVectorStore:
         if not documents:
             raise RAGException("Cannot create index with empty documents.")
         try:
-            self.vector_store = FAISS.from_documents(documents, self.embeddings)
+            self.vector_store = self.FAISS.from_documents(documents, self.embeddings)
             logger.info(f"New FAISS index created with {len(documents)} documents.")
         except Exception as e:
             raise RAGException(f"Failed to create index: {e}")
@@ -36,7 +39,7 @@ class FAISSVectorStore:
     def load_index(self):
         if os.path.exists(os.path.join(self.index_path, "index.faiss")):
             try:
-                self.vector_store = FAISS.load_local(self.index_path, self.embeddings, allow_dangerous_deserialization=True)
+                self.vector_store = self.FAISS.load_local(self.index_path, self.embeddings, allow_dangerous_deserialization=True)
                 logger.info(f"Loaded existing FAISS index from {self.index_path}")
             except Exception as e:
                 logger.error(f"Corrupt index at {self.index_path}: {e}")
