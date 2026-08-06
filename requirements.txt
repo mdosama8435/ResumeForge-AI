@@ -6,7 +6,7 @@ langchain-google-genai
 sentence-transformers
 faiss-cpu
 reportlab
-PyMuPDF
+pypdf
 python-docx
 pydantic
 pydantic-settings
