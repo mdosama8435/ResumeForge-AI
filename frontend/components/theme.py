@@ -109,13 +109,7 @@ def load_css():
     """, unsafe_allow_html=True)
 
 def render_hero_banner(title: str, subtitle: str, description: str):
-    html_content = f"""
-<div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.03)); border-radius: 24px; border: 1px solid rgba(79, 70, 229, 0.15); margin-bottom: 2rem; margin-top: 0;">
-<h1 class="gradient-text" style="font-size: 4.5rem; margin-bottom: 1rem; font-weight: 900; line-height: 1.1; letter-spacing: -1px;">{title}</h1>
-<h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: #1e293b; font-weight: 700;">{subtitle}</h2>
-<p style="font-size: 1.25rem; max-width: 750px; margin: 0 auto 1.5rem auto; color: #475569; line-height: 1.6;">{description}</p>
-</div>
-"""
+    html_content = f'<div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.03)); border-radius: 24px; border: 1px solid rgba(79, 70, 229, 0.15); margin-bottom: 2rem; margin-top: 0;"><h1 class="gradient-text" style="font-size: 4.5rem; margin-bottom: 1rem; font-weight: 900; line-height: 1.1; letter-spacing: -1px;">{title}</h1><h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: #1e293b; font-weight: 700;">{subtitle}</h2><p style="font-size: 1.25rem; max-width: 750px; margin: 0 auto 1.5rem auto; color: #475569; line-height: 1.6;">{description}</p></div>'
     st.markdown(html_content, unsafe_allow_html=True)
 
 def render_header(title: str, description: str, icon: str = ""):
@@ -131,18 +125,8 @@ def render_header(title: str, description: str, icon: str = ""):
     )
 
 def render_card(title: str, content: str, icon: str = ""):
-    icon_html = f"""
-<div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1)); font-size: 1.5rem; margin-bottom: 16px;">
-{icon}
-</div>
-""" if icon else ""
-    html_content = f"""
-<div class="premium-card">
-{icon_html}
-<h3 style="margin-top: 0; color: #0f172a; font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">{title}</h3>
-<div style="color: #475569; font-size: 0.95rem; line-height: 1.6;">{content}</div>
-</div>
-"""
+    icon_html = f'<div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1)); font-size: 1.5rem; margin-bottom: 16px;">{icon}</div>' if icon else ""
+    html_content = f'<div class="premium-card">{icon_html}<h3 style="margin-top: 0; color: #0f172a; font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">{title}</h3><div style="color: #475569; font-size: 0.95rem; line-height: 1.6;">{content}</div></div>'
     st.markdown(html_content, unsafe_allow_html=True)
 
 def render_badges(items: list, badge_type: str = "success"):
