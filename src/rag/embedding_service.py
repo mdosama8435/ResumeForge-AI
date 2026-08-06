@@ -1,6 +1,5 @@
 import time
 from loguru import logger
-from langchain_huggingface import HuggingFaceEmbeddings
 from exceptions.rag_exception import RAGException
 from config.settings import settings
 from typing import List
@@ -9,11 +8,13 @@ class EmbeddingService:
     _instance = None
     
     @classmethod
-    def load_model(cls) -> HuggingFaceEmbeddings:
+    def load_model(cls):
         """Singleton pattern for loading the HuggingFace embeddings model."""
         if cls._instance is None:
             logger.info(f"Loading embedding model: {settings.EMBEDDING_MODEL}")
             try:
+                # LAZY IMPORT: Defer importing heavy ML libraries until first use
+                from langchain_huggingface import HuggingFaceEmbeddings
                 start_time = time.time()
                 cls._instance = HuggingFaceEmbeddings(
                     model_name=settings.EMBEDDING_MODEL
