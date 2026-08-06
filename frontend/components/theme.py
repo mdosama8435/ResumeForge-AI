@@ -8,26 +8,29 @@ def load_css():
         .text-muted { color: #6B7280; }
         
         /* Main layout overrides */
+        header[data-testid="stHeader"] { display: none !important; }
         .block-container {
-            padding-top: 2rem !important;
+            padding-top: 1rem !important;
             padding-bottom: 2rem !important;
             max-width: 1200px !important;
         }
         
         /* Premium Card */
         .premium-card {
-            background-color: #FFFFFF !important;
-            border: 1px solid #D1D5DB !important;
-            border-radius: 12px !important;
-            padding: 24px !important;
-            box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2) !important;
+            background: linear-gradient(145deg, #ffffff, #f8fafc) !important;
+            border: 1px solid #e2e8f0 !important;
+            border-top: 4px solid #4F46E5 !important;
+            border-radius: 16px !important;
+            padding: 28px !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
             margin-bottom: 1.5rem !important;
-            transition: all 0.3s ease !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
         .premium-card:hover {
-            transform: translateY(-4px) !important;
-            box-shadow: 0 12px 32px rgba(149, 157, 165, 0.3) !important;
-            border-color: #9CA3AF !important;
+            transform: translateY(-5px) scale(1.01) !important;
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.12) !important;
+            border-color: #c7d2fe !important;
+            border-top: 4px solid #7C3AED !important;
         }
         
         /* Gradient Text */
@@ -107,10 +110,10 @@ def load_css():
 
 def render_hero_banner(title: str, subtitle: str, description: str):
     st.markdown(f"""
-        <div style="text-align: center; padding: 4rem 1rem;">
-            <h1 class="gradient-text" style="font-size: 4.5rem; margin-bottom: 0.5rem; font-weight: 800; line-height: 1.1;">{title}</h1>
-            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-color);">{subtitle}</h2>
-            <p style="font-size: 1.25rem; max-width: 650px; margin: 0 auto 2rem auto; color: #6B7280;">{description}</p>
+        <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.03)); border-radius: 24px; border: 1px solid rgba(79, 70, 229, 0.15); margin-bottom: 2rem; margin-top: 0;">
+            <h1 class="gradient-text" style="font-size: 4.5rem; margin-bottom: 1rem; font-weight: 900; line-height: 1.1; letter-spacing: -1px;">{title}</h1>
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: #1e293b; font-weight: 700;">{subtitle}</h2>
+            <p style="font-size: 1.25rem; max-width: 750px; margin: 0 auto 1.5rem auto; color: #475569; line-height: 1.6;">{description}</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -127,11 +130,16 @@ def render_header(title: str, description: str, icon: str = ""):
     )
 
 def render_card(title: str, content: str, icon: str = ""):
-    icon_html = f"<span style='margin-right: 12px; font-size: 1.4em;'>{icon}</span>" if icon else ""
+    icon_html = f"""
+    <div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1)); font-size: 1.5rem; margin-bottom: 16px;">
+        {icon}
+    </div>
+    """ if icon else ""
     st.markdown(f"""
         <div class="premium-card">
-            <h3 style="margin-top: 0; color: var(--text-color); font-size: 1.2rem;">{icon_html}{title}</h3>
-            <div style="color: #6B7280; font-size: 0.95rem;">{content}</div>
+            {icon_html}
+            <h3 style="margin-top: 0; color: #0f172a; font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">{title}</h3>
+            <div style="color: #475569; font-size: 0.95rem; line-height: 1.6;">{content}</div>
         </div>
     """, unsafe_allow_html=True)
 
