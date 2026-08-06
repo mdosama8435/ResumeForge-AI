@@ -4,6 +4,7 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     LOG_LEVEL: str = "INFO"
     ENVIRONMENT: str = "development"
+    API_BASE_URL: str = "http://localhost:8000"
     
     CHUNK_SIZE: int = 500
     CHUNK_OVERLAP: int = 100

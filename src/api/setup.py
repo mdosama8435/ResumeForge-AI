@@ -6,11 +6,23 @@ from src.api.routers import upload_router, analysis_router, resume_router, inter
 from src.api.exception_handlers import global_exception_handler, resumeforge_exception_handler
 from exceptions.base import ResumeForgeException
 
+from contextlib import asynccontextmanager
+from src.rag.embedding_service import EmbeddingService
+from loguru import logger
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("Starting up API, preloading ML models...")
+    EmbeddingService.load_model()
+    yield
+    logger.info("Shutting down API...")
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title="ResumeForge AI API",
         description="Production API integrating Parser, RAG, ATS, and LLM.",
-        version="1.0.0"
+        version="1.0.0",
+        lifespan=lifespan
     )
 
     # Middlewares

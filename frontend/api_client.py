@@ -17,7 +17,7 @@ class APIClient:
     @staticmethod
     def upload_resume(file) -> Dict[str, Any]:
         url = f"{API_BASE_URL}/upload/resume"
-        files = {"file": (file.name, file, file.type)}
+        files = {"file": (file.name, file.getvalue(), file.type)}
         data = {"session_id": APIClient._get_session()}
         response = requests.post(url, files=files, data=data)
         response.raise_for_status()
@@ -26,7 +26,7 @@ class APIClient:
     @staticmethod
     def upload_jd(file) -> Dict[str, Any]:
         url = f"{API_BASE_URL}/upload/job-description"
-        files = {"file": (file.name, file, file.type)}
+        files = {"file": (file.name, file.getvalue(), file.type)}
         data = {"session_id": APIClient._get_session()}
         response = requests.post(url, files=files, data=data)
         response.raise_for_status()
