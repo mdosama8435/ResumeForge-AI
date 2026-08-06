@@ -1,0 +1,35 @@
+# Environments
+venv/
+env/
+.env
+.venv/
+env.bak/
+venv.bak/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Local Data and Output
+outputs/
+uploads/
+vector_store/
+test.pdf
+test_payload.json
+
+# Streamlit secrets (only ignore secrets if they exist, not the whole config)
+.streamlit/secrets.toml

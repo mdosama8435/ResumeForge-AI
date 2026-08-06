@@ -1,0 +1,109 @@
+/* Premium Light Enterprise SaaS Theme - Base Variables */
+:root {
+    --primary-color: #2563EB;
+    --secondary-color: #7C3AED;
+    --accent-color: #06B6D4;
+    --background-color: #F8FAFC;
+    --secondary-background-color: #FFFFFF;
+    --border-color: #E5E7EB;
+    --text-color: #111827;
+    --text-muted: #6B7280;
+    
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+}
+
+/* Hide Streamlit Branding */
+#MainMenu, header, footer {visibility: hidden !important; display: none !important;}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--background-color); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Streamlit Native Overrides */
+.stButton>button, .stDownloadButton>button {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 1.8rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+.stButton>button:hover, .stDownloadButton>button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* Secondary Button using kind="secondary" if Streamlit supports it */
+button[data-baseweb="button"][kind="secondary"] {
+    background: #FFFFFF !important;
+    color: var(--primary-color) !important;
+    border: 1px solid #E5E7EB !important;
+}
+button[data-baseweb="button"][kind="secondary"]:hover {
+    background: #F8FAFC !important;
+}
+
+/* File Uploader */
+[data-testid="stFileUploader"] {
+    background: #FFFFFF;
+    border: 2px dashed #E5E7EB;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--primary-color);
+    background: #F8FAFC;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: #FFFFFF !important;
+    border-right: 1px solid #E5E7EB !important;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+}
+
+/* Metrics */
+[data-testid="stMetricValue"] {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    color: var(--text-color) !important;
+}
+[data-testid="stMetricLabel"] {
+    color: var(--text-muted) !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Table styles */
+[data-testid="stTable"] table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+[data-testid="stTable"] th {
+    background-color: var(--background-color) !important;
+    color: var(--text-muted) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+[data-testid="stTable"] td {
+    padding: 16px !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+[data-testid="stTable"] tr:last-child td { border-bottom: none !important; }
+[data-testid="stTable"] tr:hover { background-color: #F8FAFC; }

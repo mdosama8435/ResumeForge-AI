@@ -1,0 +1,1 @@
+from fastapi import APIRouter\n\nrouter = APIRouter(tags=['interview'])\n\n@interview.post('/interview')\ndef interview_endpoint():\n    pass\n

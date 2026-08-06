@@ -1,0 +1,1 @@
+from pydantic import BaseModel\n\nclass ResumeModel(BaseModel):\n    pass\n

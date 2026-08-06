@@ -1,0 +1,1 @@
+from fastapi import APIRouter\n\nrouter = APIRouter(tags=['generate'])\n\n@generate.post('/generate')\ndef generate_endpoint():\n    pass\n

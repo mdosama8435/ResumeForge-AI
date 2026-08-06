@@ -1,0 +1,1 @@
+from fastapi import APIRouter\n\nrouter = APIRouter(tags=['download'])\n\n@download.post('/download')\ndef download_endpoint():\n    pass\n

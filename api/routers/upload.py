@@ -1,0 +1,1 @@
+from fastapi import APIRouter\n\nrouter = APIRouter(tags=['upload'])\n\n@upload.post('/upload')\ndef upload_endpoint():\n    pass\n

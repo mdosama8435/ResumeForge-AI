@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+streamlit
+langchain
+langchain-google-genai
+sentence-transformers
+faiss-cpu
+reportlab
+PyMuPDF
+python-docx
+pydantic
+pydantic-settings
+loguru
+requests
+python-multipart

@@ -1,0 +1,1 @@
+from fastapi import APIRouter\n\nrouter = APIRouter(tags=['analyze'])\n\n@analyze.post('/analyze')\ndef analyze_endpoint():\n    pass\n
