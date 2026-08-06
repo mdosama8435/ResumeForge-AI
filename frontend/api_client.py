@@ -2,7 +2,9 @@ import requests
 import streamlit as st
 from typing import Dict, Any
 
-API_BASE_URL = "http://localhost:8000"
+import os
+
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 
 class APIClient:
     @staticmethod
