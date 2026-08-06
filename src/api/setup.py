@@ -13,7 +13,10 @@ from loguru import logger
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting up API, preloading ML models...")
-    EmbeddingService.load_model()
+    try:
+        EmbeddingService.load_model()
+    except Exception as e:
+        logger.error(f"Failed to preload ML models: {e}")
     yield
     logger.info("Shutting down API...")
 
