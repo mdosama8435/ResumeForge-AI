@@ -15,7 +15,13 @@ class UploadController:
             f.write(file_bytes)
             
         parsed_data = parser.parse(temp_path)
-        doc_manager.add_document(session_id, "resume", parsed_data.get("sections", {}), file.filename)
+        
+        try:
+            doc_manager.add_document(session_id, "resume", parsed_data.get("sections", {}), file.filename)
+        except Exception as e:
+            if "Duplicate document" not in str(e):
+                raise e
+                
         return parsed_data
 
     @staticmethod
