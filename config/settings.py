@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     
     CHUNK_SIZE: int = 500
     CHUNK_OVERLAP: int = 100
-    EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
+    EMBEDDING_MODEL: str = "models/embedding-001"
     TOP_K: int = 4
     SCORE_THRESHOLD: float = 0.0
     VECTOR_STORE_DIR: str = "vector_store"

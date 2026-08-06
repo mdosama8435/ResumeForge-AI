@@ -9,15 +9,15 @@ class EmbeddingService:
     
     @classmethod
     def load_model(cls):
-        """Singleton pattern for loading the HuggingFace embeddings model."""
+        """Singleton pattern for loading the embeddings model."""
         if cls._instance is None:
             logger.info(f"Loading embedding model: {settings.EMBEDDING_MODEL}")
             try:
-                # LAZY IMPORT: Defer importing heavy ML libraries until first use
-                from langchain_huggingface import HuggingFaceEmbeddings
+                from langchain_google_genai import GoogleGenerativeAIEmbeddings
                 start_time = time.time()
-                cls._instance = HuggingFaceEmbeddings(
-                    model_name=settings.EMBEDDING_MODEL
+                cls._instance = GoogleGenerativeAIEmbeddings(
+                    model=settings.EMBEDDING_MODEL,
+                    google_api_key=settings.GEMINI_API_KEY
                 )
                 logger.info(f"Embedding model loaded in {time.time() - start_time:.2f}s")
             except Exception as e:
