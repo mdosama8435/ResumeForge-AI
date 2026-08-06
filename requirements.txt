@@ -8,6 +8,16 @@ langchain-community
 sentence-transformers
 faiss-cpu
 reportlab
+fastapi
+uvicorn
+streamlit
+langchain
+langchain-google-genai
+langchain-text-splitters
+langchain-community
+sentence-transformers
+faiss-cpu
+reportlab
 pypdf
 python-docx
 pydantic
@@ -15,3 +25,4 @@ pydantic-settings
 loguru
 requests
 python-multipart
+langchain-huggingface
