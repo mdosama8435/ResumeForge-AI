@@ -6,6 +6,24 @@ from src.api.dependencies import get_resume_parser, get_jd_parser, get_document_
 
 router = APIRouter(prefix="/upload", tags=["Uploads"])
 
+@router.get("/test_faiss")
+async def test_faiss():
+    try:
+        import faiss
+        return {"status": "success", "version": getattr(faiss, "__version__", "unknown")}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@router.get("/test_gemini")
+async def test_gemini():
+    try:
+        from src.rag.embedding_service import EmbeddingService
+        model = EmbeddingService.load_model()
+        res = model.embed_query("test")
+        return {"status": "success", "len": len(res)}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 @router.post("/resume", response_model=BaseResponse)
 async def upload_resume(
     request: Request,

@@ -2,13 +2,13 @@ import hashlib
 from typing import Dict, Any, List
 from langchain_core.documents import Document
 from .chunker import IntelligentChunker
-from .vector_store import FAISSVectorStore
+from .vector_store import MemoryVectorStore
 from exceptions.rag_exception import RAGException
 from loguru import logger
 
 class DocumentManager:
     def __init__(self, index_name: str = "default_index"):
-        self.vector_store = FAISSVectorStore(index_name)
+        self.vector_store = MemoryVectorStore(index_name)
         self.chunker = IntelligentChunker()
         # In memory tracker to prevent duplicate indexing
         # In production this would be backed by Postgres or Redis
