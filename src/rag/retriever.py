@@ -1,13 +1,15 @@
 import time
-from typing import List
+from typing import List, Dict, Any, Tuple
 from langchain_core.documents import Document
-from .vector_store import FAISSVectorStore
 from loguru import logger
+from .vector_store import MemoryVectorStore
+from exceptions.rag_exception import RAGException
 from config.settings import settings
 
 class RAGRetriever:
     def __init__(self, index_name: str = "default_index"):
-        self.vector_store = FAISSVectorStore(index_name)
+        self.index_name = index_name
+        self.vector_store = MemoryVectorStore(index_name)
 
     def get_retriever(self, top_k: int = None, score_threshold: float = None):
         """Returns a LangChain VectorStoreRetriever."""
